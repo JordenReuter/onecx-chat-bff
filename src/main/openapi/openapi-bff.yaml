@@ -495,7 +495,8 @@ components:
         userName:
           type: string
         reliability:
-          type: float
+          type: number
+          format: float
     Participant:
       required:
         - type
@@ -581,7 +582,28 @@ components:
         userName:
           type: string
         reliability:
-          type: float
+          type: number
+          format: float
+        requestContext:
+          $ref: '#/components/schemas/RequestContext'
+    RequestContext:
+      type: object
+      properties:
+        filter:
+          $ref: '#/components/schemas/ConfigurationFilter'
+        aiContext:
+          type: object
+          additionalProperties:
+            type: string
+    ConfigurationFilter:
+      type: object
+      properties:
+        key:
+          type: string
+          enum:
+            - APP_ID
+        value:
+          type: string
     AddParticipant:
       required:
         - type
